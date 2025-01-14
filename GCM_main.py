@@ -7,31 +7,35 @@ from Datasets.GCMDataLoader import GCMDataset
 from torch.utils.data import DataLoader
 import copy
 
-def init_param():
-    hy_param = {}
-    hy_param['num_layer'] = 2
-    hy_param['dim_node'] = 32
-    hy_param['dim_obj'] = 6
-    hy_param['dim_rel'] = 3
-    hy_param['dim_edge'] = 32
-    hy_param['gcn_dim_hidden'] = 128
-    hy_param['rel_num'] = 3
-    hy_param['lr'] = 0.0001
-    hy_param['periods'] = 18
-    hy_param['batch_size'] = 1
-    hy_param['temporal'] = True
-    # num_node
-    hy_param['num_node'] = 4
+def main():
 
-    #temporal_dataset load
-    hy_param['path'] = './[Download_Dataset]'
+    # Argument 설정
+    parser = argparse.ArgumentParser(description="GCM Main")
+    parser.add_argument('--mode', type=str, default='train', choices=['train', 'test', 'eval'],
+                        help="Default is 'train'")
+    parser.add_argument('--lr', type=float, default=0.0001, help="Learning rate")
+    parser.add_argument('--epochs', type=int, default=150, help="Epoch")
+    parser.add_argument('--batch_size', type=int, default=8, help="Batch size")
+    parser.add_argument('--gcn_layers', type=int, default=2, help="GCN layers Num")
+    parser.add_argument('--pretrained', type=str, default='best_model.pt', help="Best Model")
+    
+    args = parser.parse_args()
 
-    #default dataset load
-    # hy_param['path'] = '../mos_datasets_jsons'
+    # 하이퍼파라미터 초기화
+    hy_param = {
+        'lr': args.lr,
+        'epochs': args.epochs,
+        'batch_size': args.batch_size,
+        'gcn_layers': args.gcn_layers
+        'best_model': args.pretrained
+    }
 
-    hy_param['train_test_path'] = './split_dataset_list'
-    hy_param['epochs'] = 300
-    return hy_param
+    # 모델 초기화
+    network = GCMModel('GCMModel', hy_param, norm_flag=True)
+    print("Model:\n", network)
+
+    run_process(mode=args.mode, hy_param=hy_param)
+
 
 def build_datasets(hy_param):
     # Update Temporal Dataset 2022.05.19
@@ -48,9 +52,9 @@ def build_datasets(hy_param):
         # build Datasets
         train_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
                                     Normalization=True)
-        test_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
+        test_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='test',
                                    Normalization=True)
-        val_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
+        val_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='val',
                                   Normalization=True)
         # build Dataloader
         trainDataLoader = DataLoader(dataset=train_datasets, batch_size=1, shuffle=True)
@@ -60,9 +64,9 @@ def build_datasets(hy_param):
         # build Datasets
         train_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
                                     Normalization=True)
-        test_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
+        test_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='test',
                                    Normalization=True)
-        val_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='train',
+        val_datasets = MosDataset(root=hy_param['path'], split_path=hy_param['train_test_path'], mode='val',
                                   Normalization=True)
         # build Dataloader
         trainDataLoader = DataLoader(dataset=train_datasets, batch_size=1, shuffle=True)
@@ -149,7 +153,7 @@ def run_process(mode,hy_param,model_path='./save_models'):
     else:
         # Test Start
         #load_model
-        model_file_name = 'bestmodel.pt' #추후에 best model로 변경
+        model_file_name = hy_param['best_model'] #'bestmodel.pt'
         network.load_state_dict(torch.load(os.path.join(model_path,model_file_name)))
         # print(network)
         #
@@ -208,11 +212,4 @@ def run_process(mode,hy_param,model_path='./save_models'):
                                                                      test_acc))
 
 if __name__ == '__main__':
-    hy_param = init_param()
-    # build model
-    network = GCMModel('GCMModel', hy_param, norm_flag=True)
-    print(network)
-
-    #process Start
-    # run_process(mode='train')
-    run_process(mode='train',hy_param=hy_param)
+    main()

@@ -14,26 +14,26 @@
 
 ---
 
-## 📂 Directory
+## 📂 Directory Structure
 
-    ├── datasets/                        # 데이터 로더 및 원본 데이터
-    │   ├── GCMDataLoader.py             # 데이터 로더 메인 코드
-    │   ├── raw/                         # 원본 데이터 디렉토리
+    ├── datasets/                        # 데이터 로더
+    │   ├── GCMDataLoader.py             
+    │   ├── raw/                         # 원본 데이터
     │   │   ├── Isaac/                   # Isaac 데이터셋
     │   │   └── MOS/                     # MOS 데이터셋
     ├── models/                          # 네트워크 모델 정의
-    │   ├── CloudGCM_Network.py          # 클라우드 기반 GCM 네트워크
-    │   ├── network_RelNet.py            # RelNet 신경망
+    │   ├── CloudGCM_Network.py          
+    │   ├── network_RelNet.py            
     │   ├── TripleNetGCN.py              # TripleNet GCN 모델
-    │   ├── TT_GCN.py                    # TT GCN 모델
-    │   └── utils/                       # 유틸리티 함수 및 스크립트
+    │   ├── TT_GCN.py                    
+    │   └── utils/                       
     │       ├── Graph_Vis.py             # 그래프 시각화 코드
     │       ├── visualization.py         # 시각화 유틸리티
-    │       └── op_utils.py              # 기타 유틸리티 함수
+    │       └── op_utils.py              
     ├── rule_based_contextManager/       # 규칙 기반 맥락 추론 모듈
-    │   └── RuleContextManager.py        # 규칙 기반 추론 로직
+    │   └── RuleContextManager.py        
     ├── data_collecter/                  # 데이터 수집 모듈
-    │   └── DataCollecter.py             # 데이터 수집 및 전처리 코드
+    │   └── DataCollecter.py             
     ├── GCM_main.py                      # 메인 실행 스크립트
 
 ---
@@ -52,6 +52,18 @@
     '''
     
 ## Run Code
-    ```bash
-    conda create -n gcmAgent python=3.8
+    
+    ### Train
 
+    ```
+    python GCM_main.py --mode train --lr 0.001 --epochs 300 --batch_size 16 --gcn_layers 4
+    
+    ```
+
+    ### Test
+    ```
+    python GCM_main.py --mode test --pretrained save_models/gcn_model99.pt
+    
+    ```
+
+---
