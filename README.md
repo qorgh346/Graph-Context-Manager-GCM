@@ -16,7 +16,7 @@
 
 ## 📂 Directory
 
-GraphContextManager/
+'''GraphContextManager/
 ├── datasets/                        # 데이터 로더
 │   ├── GCMDataLoader.py             
 │   ├── raw/                         # 데이터 집합
@@ -36,7 +36,7 @@ GraphContextManager/
 ├── data_collecter/                  
 │   └── DataCollecter.py             # 데이터 수집 코드
 ├── GCM_main.py                      # 메인 실행 스크립트
-
+'''
 
 ---
 
