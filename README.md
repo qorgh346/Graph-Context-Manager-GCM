@@ -14,4 +14,46 @@
 
 ---
 
-## 📂 디렉토리 구조
+## 📂 Directory
+
+GraphContextManager/
+├── datasets/                        # 데이터 로더
+│   ├── GCMDataLoader.py             
+│   ├── raw/                         # 데이터 집합
+│   │   ├── Isaac/                   # Isaac 데이터셋
+│   │   └── MOS/                     # MOS 데이터셋
+├── models/                          # 네트워크 모델 정의
+│   ├── CloudGCM_Network.py          
+│   ├── network_RelNet.py            
+│   ├── TripleNetGCN.py              # TripleNet GCN 모델
+│   ├── TT_GCN.py                    
+│   └── utils/                       
+│       ├── Graph_Vis.py             # 그래프 시각화 코드
+│       ├── visualization.py         # 시각화 유틸리티
+│       └── op_utils.py              # 기타 유틸리티 함수
+├── rule_based_contextManager/       # 규칙 기반 맥락 추론 모듈
+│   └── RuleContextManager.py        
+├── data_collecter/                  
+│   └── DataCollecter.py             # 데이터 수집 코드
+├── GCM_main.py                      # 메인 실행 스크립트
+
+
+---
+
+## 🛠️ Dependencies
+    
+    ```bash
+    conda create -n gcmAgent python=3.8
+    conda activate gcmAgent
+    pip install -r requirements.txt
+    pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+    pip install torch-scatter -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+    pip install torch-sparse -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+    pip install torch-spline-conv -f https://pytorch-geometric.com/whl/torch-1.12.1+cu113.html
+    pip install torch-geometric
+    '''
+    
+## Run Code
+    ```bash
+    conda create -n gcmAgent python=3.8
+
