@@ -53,17 +53,20 @@
     
 ## Run Code
     
-    ### Train
+ 1. Train
 
-    ```
+    ```bash
     python GCM_main.py --mode train --lr 0.001 --epochs 300 --batch_size 16 --gcn_layers 4
-    
+    ```
+2. Test
+    ```bash
+    python GCM_main.py --mode test --pretrained save_models/gcn_model99.pt
     ```
 
-    ### Test
-    ```
-    python GCM_main.py --mode test --pretrained save_models/gcn_model99.pt
-    
+3. Visualization
+    ```bash
+    cd utils
+    python visualization.py
     ```
 
 ---
