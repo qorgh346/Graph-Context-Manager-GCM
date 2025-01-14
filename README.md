@@ -70,3 +70,8 @@
     ```
 
 ---
+
+## 신경망 학습 기반 맥락 추론기 데모
+
+[![Project Demo](https://img.youtube.com/vi/MRAI9zBHEMg/0.jpg)](https://www.youtube.com/watch?v=MRAI9zBHEMg)
+
