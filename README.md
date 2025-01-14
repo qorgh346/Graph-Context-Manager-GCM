@@ -1,6 +1,7 @@
-# Graph Context Manager
+# Graph Context Manager(GCM)
 제조/물류 환경에서 다중 로봇 작업을 위한 시-공간 작업 맥락 그래프의 생성과 맥락 추론기 개발
 
+![GCM Model Structure](assets/GraphContextManagerModel.png)
 
 ## Description
 협업 상대 로봇의 행동 맥락(Action Context) 정보를 추론하는 그래프 신경망 기반 맥락 추론 모델입니다.
