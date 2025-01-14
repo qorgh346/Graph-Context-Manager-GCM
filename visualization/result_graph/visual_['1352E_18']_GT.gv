@@ -1,0 +1,20 @@
+// The Scene Graph
+digraph {
+	node [fillcolor=aliceblue style=filled]
+	0 [label=AMR_LIFT01]
+	node [fillcolor=antiquewhite style=filled]
+	1 [label=AMR_LIFT02]
+	node [fillcolor=cornsilk3 style=filled]
+	2 [label=TOW_LIFT01]
+	node [fillcolor=lightpink style=filled]
+	3 [label=TOW_LIFT02]
+	edge [color=black fontname=Sans style=filled]
+	0 -> 3 [label=toTheLeftOf]
+	0 -> 3 [label=near]
+	1 -> 2 [label=toTheLeftOf]
+	2 -> 1 [label=toTheRightOf]
+	2 -> 3 [label=behind]
+	3 -> 0 [label=toTheRightOf]
+	3 -> 0 [label=near]
+	3 -> 2 [label=inFrontOf]
+}

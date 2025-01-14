@@ -1,0 +1,9 @@
+ARM_LIFT01
+Palletizer_01
+Pallet_01
+Rack_01
+Rack_02
+Carton_01
+Carton_02
+Carton_03
+Carton_04

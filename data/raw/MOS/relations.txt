@@ -1,0 +1,7 @@
+none
+inFrontOf
+behind
+toTheRightOf
+toTheLeftOf
+near
+far

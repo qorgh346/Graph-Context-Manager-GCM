@@ -1,0 +1,4 @@
+noAction
+pickingUp
+carrying
+placingCargoOn
